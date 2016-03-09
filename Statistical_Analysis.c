@@ -10,29 +10,25 @@ Description of Program
 
 #define MAX 10
 
-int getData(int integers[]);
-
+void getData(int []);
+void sortData(int []);
+void calcStats(int [], float *, float *, float *, float *);
+void displayStats(float, float, float, float);
 int main()
 {
 	int integers[MAX];
-	
-	printf("We are going to Enter %d integers.\n\n", MAX);
-	
-	do
-	{
-		printf("Please hit [Enter] to continue.");
-		
-	}while(getchar() != '\n');
-	
-	system("CLS"); //Create clearScreen
-	
+	int count;
+	float mean, median, range, mode;
+
 	getData(integers);
+	sortData(integers);
+	calcStats(integers, &mean, &median, &range, &mode);
+	displayStats(mean, median, mode, range);
 	
-	printf("\n%d", integers[0]);	
 	return 0;
 }
 
-int getData(int integers[])
+void getData(int integers[])
 {
 	int count;
 	
@@ -43,6 +39,78 @@ int getData(int integers[])
 	}
 }
 
+void sortData(int integers[])
+{
+	int count, temp, sorted;
+	
+	while(1)
+	{
+		sorted = 0;
+		
+		for(count=0; count<MAX-1; ++count)
+		{
+			if(integers[count] > integers[count+1])
+			{
+				temp = integers[count];
+				integers[count] = integers[count+1];
+				integers[count+1] = temp;
+				sorted = 1;
+			}
+		}
+		
+		if(sorted == 0)
+		{
+			break;
+		}
+		
+	}
+}
+
+void calcStats(int integers[], float *mean, float *median, float *range, float *mode)
+{
+	int total = 0, count;
+	int temp_frequency = 1, mode_num = 0, frequency = 1;
+	
+	for(count = 0; count<MAX; ++count)
+	{
+		total += integers[count];
+	}
+	
+	*mean = total/(MAX*1.0);
+	
+	if(MAX%2 == 0)
+	{
+		*median = (integers[((MAX-1)/2)] + integers[((MAX-1)/2+1)])/2.0;
+	}
+	
+	*range = integers[MAX-1] - integers[0];
+	
+	for(count=0; count<MAX-1; ++count)
+	{
+		if(integers[count] == integers[count+1])
+		{
+			temp_frequency++;
+		}
+		else
+		{
+			temp_frequency = 1;
+		}
+		
+		if(temp_frequency > frequency)
+		{
+			frequency = temp_frequency;
+			*mode = integers[count];
+		}
+	}
+}
+
+void displayStats(float mean, float median, float mode, float range)
+{
+	printf("\nMean: %.2f", mean);//Add all then divide
+	printf("\nMedian: %.2f", median);//Middle number, if two, average them
+	printf("\nMode: %.2f", mode);//Most occured number
+	printf("\nRange: %.2f", range);//Most minus smallest
+}
 
 
 
