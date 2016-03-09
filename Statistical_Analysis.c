@@ -3,11 +3,10 @@
 //Statistical_Analysis
 
 /*
-
+Description of Program
 */
 
 #include<stdio.h>
-//#include<conio.h>
 
 #define MAX 10
 
@@ -16,14 +15,13 @@ int getData(int integers[]);
 int main()
 {
 	int integers[MAX];
-	int count;
 	
 	printf("We are going to Enter %d integers.\n\n", MAX);
 	
 	do
 	{
 		printf("Please hit [Enter] to continue.");
-		//getch();
+		
 	}while(getchar() != '\n');
 	
 	system("CLS"); //Create clearScreen
