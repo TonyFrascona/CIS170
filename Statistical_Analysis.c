@@ -3,7 +3,10 @@
 //Statistical_Analysis
 
 /*
-Description of Program
+This program starts by asking the user to input integers into an array.
+Then it sorts the array from smallest to largest. Proceeding by finding the statistical
+range, mean median and mode. Finally it uses a function to display the afformentioned
+data.
 */
 
 #include<stdio.h>
